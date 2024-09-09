@@ -1,0 +1,145 @@
+ScreenManager:
+    LoginScreen:
+    SignupScreen:
+
+<LoginScreen>:
+    name: 'login'
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+        size_hint: 1, 1
+         # Center the MDCard in the middle of the screen
+        Widget:
+            size_hint_y: None
+            height: dp(0)  # Pushes the MDCard to the center vertically
+
+        MDCard:
+            size_hint: None, None
+            width: "360dp"
+            height: "640dp"
+            md_bg_color: 1, 1, 1, 1
+            padding: dp(20)
+            spacing: dp(30)
+            orientation: "vertical"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            MDLabel:
+                text: "LOGIN"
+                text_color: 1, 1, 1, 1  # White color
+                font_style: 'H5'
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDTextField:
+                hint_text: "Username"
+                icon_right: "account"
+                color_mode: 'custom'
+                line_color_normal: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1  # White color
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                hint_text: "Password"
+                icon_right: "eye-off"
+                color_mode: 'custom'
+                line_color_normal: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1  # White color
+                password: True
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(20)
+                size_hint_y: None
+                height: dp(48)
+
+                MDRaisedButton:
+                    text: "LOGIN"
+                    text_color: 1, 1, 1, 1  # White color
+                    size_hint_x: 0.5
+                    on_release: app.login()
+
+                MDRaisedButton:
+                    text: "SIGNUP"
+                    text_color: 1, 1, 1, 1  # White color
+                    size_hint_x: 0.5
+                    on_release: app.change_screen('signup')
+    Widget:
+        size_hint_y: None
+        height: dp(0)
+
+<SignupScreen>:
+    name: 'signup'
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+        size_hint: 1, 1
+
+        MDCard:
+            size_hint: None, None
+            width: "360dp"
+            height: "640dp"
+            md_bg_color: 1, 1, 1, 1
+            padding: dp(20)
+            spacing: dp(30)
+            orientation: "vertical"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            MDLabel:
+                text: "SIGN-UP"
+                font_style: 'H5'
+                text_color: 1, 1, 1, 1  # White color
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDTextField:
+                hint_text: "Email"
+                icon_right: "email"
+                color_mode: 'custom'
+                line_color_normal: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1  # White color
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                hint_text: "Password"
+                icon_right: "eye-off"
+                color_mode: 'custom'
+                line_color_normal: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1  # White color
+                password: True
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            MDTextField:
+                hint_text: "Confirm Password"
+                icon_right: "eye-off"
+                color_mode: 'custom'
+                line_color_normal: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1  # White color
+                password: True
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            MDRaisedButton:
+                text: "SIGNUP"
+                pos_hint: {"center_x": 0.5}
+                text_color: 1, 1, 1, 1  # White color
+                size_hint_x: 0.8
+                on_release: app.signup()
+
+            MDRaisedButton:
+                text: "BACK TO LOGIN"
+                pos_hint: {"center_x": 0.5}
+                text_color: 1, 1, 1, 1  # White color
+                size_hint_x: 0.8
+                on_release: app.change_screen('login')
+

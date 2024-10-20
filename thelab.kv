@@ -10,10 +10,9 @@ ScreenManager:
         spacing: dp(10)
         padding: dp(20)
         size_hint: 1, 1
-         # Center the MDCard in the middle of the screen
         Widget:
             size_hint_y: None
-            height: dp(0)  # Pushes the MDCard to the center vertically
+            height: dp(0)
 
         MDCard:
             size_hint: None, None
@@ -27,27 +26,29 @@ ScreenManager:
 
             MDLabel:
                 text: "LOGIN"
-                text_color: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1
                 font_style: 'H5'
                 halign: "center"
                 size_hint_y: None
                 height: self.texture_size[1]
 
             MDTextField:
+                id: email  # Added ID
                 hint_text: "Username"
                 icon_right: "account"
                 color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1  # White color
-                text_color: 1, 1, 1, 1  # White color
+                line_color_normal: 1, 1, 1, 1
+                text_color: 1, 1, 1, 1
                 size_hint_x: 0.8
                 pos_hint: {"center_x": 0.5}
 
             MDTextField:
+                id: password  # Added ID
                 hint_text: "Password"
                 icon_right: "eye-off"
                 color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1  # White color
-                text_color: 1, 1, 1, 1  # White color
+                line_color_normal: 1, 1, 1, 1
+                text_color: 1, 1, 1, 1
                 password: True
                 size_hint_x: 0.8
                 pos_hint: {"center_x": 0.5}
@@ -60,15 +61,16 @@ ScreenManager:
 
                 MDRaisedButton:
                     text: "LOGIN"
-                    text_color: 1, 1, 1, 1  # White color
+                    text_color: 1, 1, 1, 1
                     size_hint_x: 0.5
                     on_release: app.login()
 
                 MDRaisedButton:
                     text: "SIGNUP"
-                    text_color: 1, 1, 1, 1  # White color
+                    text_color: 1, 1, 1, 1
                     size_hint_x: 0.5
                     on_release: app.change_screen('signup')
+
     Widget:
         size_hint_y: None
         height: dp(0)
@@ -95,36 +97,39 @@ ScreenManager:
             MDLabel:
                 text: "SIGN-UP"
                 font_style: 'H5'
-                text_color: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1
                 halign: "center"
                 size_hint_y: None
                 height: self.texture_size[1]
 
             MDTextField:
+                id: email  # Added ID
                 hint_text: "Email"
                 icon_right: "email"
                 color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1  # White color
-                text_color: 1, 1, 1, 1  # White color
+                line_color_normal: 1, 1, 1, 1
+                text_color: 1, 1, 1, 1
                 size_hint_x: 0.8
                 pos_hint: {"center_x": 0.5}
 
             MDTextField:
+                id: password  # Added ID
                 hint_text: "Password"
                 icon_right: "eye-off"
                 color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1  # White color
-                text_color: 1, 1, 1, 1  # White color
+                line_color_normal: 1, 1, 1, 1
+                text_color: 1, 1, 1, 1
                 password: True
                 size_hint_x: 0.8
                 pos_hint: {"center_x": 0.5}
 
             MDTextField:
+                id: confirm_password  # Added ID
                 hint_text: "Confirm Password"
                 icon_right: "eye-off"
                 color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1  # White color
-                text_color: 1, 1, 1, 1  # White color
+                line_color_normal: 1, 1, 1, 1
+                text_color: 1, 1, 1, 1
                 password: True
                 size_hint_x: 0.8
                 pos_hint: {"center_x": 0.5}
@@ -132,14 +137,14 @@ ScreenManager:
             MDRaisedButton:
                 text: "SIGNUP"
                 pos_hint: {"center_x": 0.5}
-                text_color: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1
                 size_hint_x: 0.8
                 on_release: app.signup()
 
             MDRaisedButton:
                 text: "BACK TO LOGIN"
                 pos_hint: {"center_x": 0.5}
-                text_color: 1, 1, 1, 1  # White color
+                text_color: 1, 1, 1, 1
                 size_hint_x: 0.8
                 on_release: app.change_screen('login')
 

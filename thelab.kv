@@ -1,150 +1,196 @@
-ScreenManager:
-    LoginScreen:
-    SignupScreen:
+MDScreenManager:
+    HomeScreen:
+    WorkoutPlansScreen:
+    DietaryRecommendationsScreen:
+    MotivationSupportScreen:
+    UserProfileScreen:
+    DaywiseWorkoutScreen:
+    MotivationQuotesScreen:
+    LogoutScreen:
 
-<LoginScreen>:
-    name: 'login'
+<HomeScreen>:
+    name: "home"
 
-    BoxLayout:
-        orientation: 'vertical'
+    MDBoxLayout:
+        orientation: "vertical"
         spacing: dp(10)
         padding: dp(20)
-        size_hint: 1, 1
-        Widget:
-            size_hint_y: None
-            height: dp(0)
 
-        MDCard:
-            size_hint: None, None
-            width: "360dp"
-            height: "640dp"
-            md_bg_color: 1, 1, 1, 1
-            padding: dp(20)
-            spacing: dp(30)
-            orientation: "vertical"
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDLabel:
+            text: "Welcome to the Fitness App!"
+            halign: "center"
+            font_style: "H5"
 
-            MDLabel:
-                text: "LOGIN"
-                text_color: 1, 1, 1, 1
-                font_style: 'H5'
-                halign: "center"
-                size_hint_y: None
-                height: self.texture_size[1]
+        MDRaisedButton:
+            text: "Workout Plans"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "workout_plans"
 
-            MDTextField:
-                id: email  # Added ID
-                hint_text: "Username"
-                icon_right: "account"
-                color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1
-                text_color: 1, 1, 1, 1
-                size_hint_x: 0.8
-                pos_hint: {"center_x": 0.5}
+        MDRaisedButton:
+            text: "Dietary Recommendations"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "dietary_recommendations"
 
-            MDTextField:
-                id: password  # Added ID
-                hint_text: "Password"
-                icon_right: "eye-off"
-                color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1
-                text_color: 1, 1, 1, 1
-                password: True
-                size_hint_x: 0.8
-                pos_hint: {"center_x": 0.5}
+        MDRaisedButton:
+            text: "Motivation and Support"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "motivation_support"
 
-            BoxLayout:
-                orientation: 'horizontal'
-                spacing: dp(20)
-                size_hint_y: None
-                height: dp(48)
+        MDRaisedButton:
+            text: "User Profile and Settings"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "user_profile"
 
-                MDRaisedButton:
-                    text: "LOGIN"
-                    text_color: 1, 1, 1, 1
-                    size_hint_x: 0.5
-                    on_release: app.login()
+        MDRaisedButton:
+            text: "Logout / Exit"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "logout"
 
-                MDRaisedButton:
-                    text: "SIGNUP"
-                    text_color: 1, 1, 1, 1
-                    size_hint_x: 0.5
-                    on_release: app.change_screen('signup')
+<WorkoutPlansScreen>:
+    name: "workout_plans"
 
-    Widget:
-        size_hint_y: None
-        height: dp(0)
-
-<SignupScreen>:
-    name: 'signup'
-
-    BoxLayout:
-        orientation: 'vertical'
-        spacing: dp(10)
+    MDBoxLayout:
+        orientation: "vertical"
         padding: dp(20)
-        size_hint: 1, 1
 
-        MDCard:
-            size_hint: None, None
-            width: "360dp"
-            height: "640dp"
-            md_bg_color: 1, 1, 1, 1
-            padding: dp(20)
-            spacing: dp(30)
-            orientation: "vertical"
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDLabel:
+            text: "Workout Plans"
+            halign: "center"
+            font_style: "H6"
 
-            MDLabel:
-                text: "SIGN-UP"
-                font_style: 'H5'
-                text_color: 1, 1, 1, 1
-                halign: "center"
-                size_hint_y: None
-                height: self.texture_size[1]
+        MDRaisedButton:
+            text: "Day-wise Workout Schedule"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "daywise_workout"
 
-            MDTextField:
-                id: email  # Added ID
-                hint_text: "Email"
-                icon_right: "email"
-                color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1
-                text_color: 1, 1, 1, 1
-                size_hint_x: 0.8
-                pos_hint: {"center_x": 0.5}
+        MDRaisedButton:
+            text: "Back to Home"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "home"
 
-            MDTextField:
-                id: password  # Added ID
-                hint_text: "Password"
-                icon_right: "eye-off"
-                color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1
-                text_color: 1, 1, 1, 1
-                password: True
-                size_hint_x: 0.8
-                pos_hint: {"center_x": 0.5}
+<DietaryRecommendationsScreen>:
+    name: "dietary_recommendations"
 
-            MDTextField:
-                id: confirm_password  # Added ID
-                hint_text: "Confirm Password"
-                icon_right: "eye-off"
-                color_mode: 'custom'
-                line_color_normal: 1, 1, 1, 1
-                text_color: 1, 1, 1, 1
-                password: True
-                size_hint_x: 0.8
-                pos_hint: {"center_x": 0.5}
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
 
-            MDRaisedButton:
-                text: "SIGNUP"
-                pos_hint: {"center_x": 0.5}
-                text_color: 1, 1, 1, 1
-                size_hint_x: 0.8
-                on_release: app.signup()
+        MDLabel:
+            text: "Dietary Recommendations"
+            halign: "center"
+            font_style: "H6"
 
-            MDRaisedButton:
-                text: "BACK TO LOGIN"
-                pos_hint: {"center_x": 0.5}
-                text_color: 1, 1, 1, 1
-                size_hint_x: 0.8
-                on_release: app.change_screen('login')
+        MDRaisedButton:
+            text: "Back to Home"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "home"
+
+<MotivationSupportScreen>:
+    name: "motivation_support"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+
+        MDLabel:
+            text: "Motivation and Support"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "Motivation Quotes and Reminders"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "motivation_quotes"
+
+        MDRaisedButton:
+            text: "Back to Home"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "home"
+
+<UserProfileScreen>:
+    name: "user_profile"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+
+        MDLabel:
+            text: "User Profile and Settings"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "View/Update Personal Details"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "home"  # Add proper navigation if needed
+
+        MDRaisedButton:
+            text: "Back to Home"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "home"
+
+<DaywiseWorkoutScreen>:
+    name: "daywise_workout"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+
+        MDLabel:
+            text: "Day-wise Workout Schedule"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "Back to Workout Plans"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "workout_plans"
+
+<MotivationQuotesScreen>:
+    name: "motivation_quotes"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+
+        MDLabel:
+            text: "Motivation Quotes and Reminders"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "Back to Motivation and Support"
+            pos_hint: {"center_x": .5}
+            on_release:
+                root.manager.current = "motivation_support"
+
+<LogoutScreen>:
+    name: "logout"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+
+        MDLabel:
+            text: "Thank you for using the Fitness App!"
+            halign: "center"
+            font_style: "H6"
+
+        MDRaisedButton:
+            text: "Exit"
+            pos_hint: {"center_x": .5}
+            on_release: app.stop()
 

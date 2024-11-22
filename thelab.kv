@@ -11,79 +11,198 @@
         name: 'profile_settings'
     WorkoutPlansScreen:
         name: 'workout_plans'
+    DietRecommendationsScreen:
+        name:'diet_plan_screen'
     MotivationScreen:
         name: 'motivation'
-
 <LoginScreen>:
     name: 'login'
     MDBoxLayout:
         orientation: 'vertical'
-        padding: 50
+        padding: 20
         spacing: 10
+
+        # Black background for the screen
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1  # Black background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Logo occupying 40% of the screen height
+        Image:
+            source: 'Picture2.png'  # Path to the logo
+            size_hint: (1, 0.4)  # 40% of screen height
+            pos_hint: {'center_x': 0.5}
+
         MDLabel:
             text: 'Login'
             halign: 'center'
             font_style: 'H4'
+            size_hint_y: None
+            height: self.texture_size[1]
+            color: 1, 1, 1, 1  # White text for the title
+
+        # Curved email text field with white background and black text
         MDTextField:
             id: email
             hint_text: 'Email'
-            required: True
+            hint_text_color: 0.5, 0.5, 0.5, 1  # Light gray hint text
+            mode: 'rectangle'
+            radius: [15]  # Curved corners
+            icon_left: "email"
+            icon_left_color: 1, 1, 1, 1  # White icon color
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            background_color: 1, 1, 1, 1  # White background
+            line_color_focus: 0, 0, 0, 1  # Black line when focused
+            line_color_normal: 0.8, 0.8, 0.8, 1  # Light gray line when not focused
+            text_color: 1, 1, 1, 1  # White text color
+
+        # Curved password text field with white background and black text
         MDTextField:
             id: password
             hint_text: 'Password'
+            hint_text_color: 0.5, 0.5, 0.5, 1  # Light gray hint text
             password: True
-            required: True
+            mode: 'rectangle'
+            radius: [15]  # Curved corners
+            icon_left: "lock"
+            icon_left_color: 1, 1, 1, 1  # White icon color
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            background_color: 1, 1, 1, 1  # White background
+            line_color_focus: 0, 0, 0, 1  # Black line when focused
+            line_color_normal: 0.8, 0.8, 0.8, 1  # Light gray line when not focused
+            text_color: 1, 1, 1, 1  # White text color
+
         MDRaisedButton:
             text: 'Login'
-            pos_hint: {"center_x": .5}
+            size_hint_x: 0.6  # Button width smaller for mobile
+            pos_hint: {'center_x': 0.5}
             on_release: root.login()
+            md_bg_color: 0, 0, 0, 1  # Black background for login button
+            text_color: 1, 1, 1, 1  # White text color
+            corner_radius: [50]  # Larger rounded corners for an oval shape
+            padding: [50, 20]  # Increased padding for larger button size
+            elevation: 10  # Shadow effect for raised button
+            on_press: self.md_bg_color = 0.1, 0.1, 0.1, 1  # Darker black when pressed
+            on_release: self.md_bg_color = 0, 0, 0, 1  # Revert to black when released
+
         MDFlatButton:
             text: 'Signup'
-            pos_hint: {"center_x": .5}
+            size_hint_x: 0.6  # Button width smaller for mobile
+            pos_hint: {'center_x': 0.5}
             on_release: app.root.current = 'signup'
-        MDIconButton:
-            icon: 'google'
-            pos_hint: {"center_x": .5}
-            on_release: root.google_login()
+            md_bg_color: 1, 1, 1, 1  # White background for signup button
+            text_color: 0, 0, 0, 1  # Black text color
+            corner_radius: [50]  # Larger rounded corners for an oval shape
+            padding: [50, 20]  # Increased padding for larger button size
+            elevation: 5  # Subtle shadow effect
+            on_press: self.md_bg_color = 0.8, 0.8, 0.8, 1  # Slight gray effect when pressed
+            on_release: self.md_bg_color = 1, 1, 1, 1  # Revert to white when released
 
         MDIconButton:
-            icon: 'arrow-left'
-            pos_hint: {"top": 1, "right": 1}
-            on_release: app.root.current = 'home'
+            icon: 'google'
+            pos_hint: {'center_x': 0.5}
+            on_release: root.google_login()
+            md_bg_color: 0.8, 0.8, 0.8, 1  # Light gray background for Google button
+            icon_color: 0, 0, 0, 1  # Black icon color
+            size_hint: None, None
+            size: "50dp", "50dp"
+            elevation: 5  # Subtle shadow effect
+            on_press: self.md_bg_color = 0.6, 0.6, 0.6, 1  # Darker gray when pressed
+            on_release: self.md_bg_color = 0.8, 0.8, 0.8, 1  # Revert to light gray when released
 
 <SignupScreen>:
     name: 'signup'
     MDBoxLayout:
         orientation: 'vertical'
         padding: 50
-        spacing: 10
+        spacing: 20
+
+        # Background color
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.1, 1  # Dark background for fitness look
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Logo occupying 50% of the screen height
+        Image:
+            source: 'Picture2.png'  # Path to the logo
+            size_hint: (1, None)  # Set width to 100% of the screen, height to None
+            height: self.parent.height * 0.4  # Logo height is 40% of parent height
+            pos_hint: {'center_x': 0.5}
+
         MDLabel:
             text: 'Signup'
             halign: 'center'
             font_style: 'H4'
+            color: 1, 1, 1, 1  # White text
+
+        # Curved email text field
         MDTextField:
             id: signup_email
             hint_text: 'Email'
-            required: True
+            mode: 'rectangle'
+            radius: [20, 20, 20, 20]  # Curved corners
+            icon_left: "email"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            background_color: 0, 0, 0, 1   # Black background
+            text_color: 1, 1, 1, 1         # White text
+            line_color_focus: 1, 1, 1, 1   # White line when focused
+            line_color_normal: 0, 0, 0, 1  # Black line when not focused
+
+        # Curved password text field
         MDTextField:
             id: signup_password
             hint_text: 'Password'
             password: True
-            required: True
+            mode: 'rectangle'
+            radius: [20, 20, 20, 20]  # Curved corners
+            icon_left: "lock"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            background_color: 0, 0, 0, 1   # Black background
+            text_color: 1, 1, 1, 1         # White text
+            line_color_focus: 1, 1, 1, 1   # White line when focused
+            line_color_normal: 0, 0, 0, 1  # Black line when not focused
+
+        # Curved confirm password text field
         MDTextField:
             id: confirm_password
             hint_text: 'Confirm Password'
             password: True
-            required: True
+            mode: 'rectangle'
+            radius: [20, 20, 20, 20]  # Curved corners
+            icon_left: "lock"
+            size_hint_x: 0.8
+            pos_hint: {'center_x': 0.5}
+            background_color: 0, 0, 0, 1   # Black background
+            text_color: 1, 1, 1, 1         # White text
+            line_color_focus: 1, 1, 1, 1   # White line when focused
+            line_color_normal: 0, 0, 0, 1  # Black line when not focused
+
         MDRaisedButton:
             text: 'Signup'
-            pos_hint: {"center_x": .5}
+            size_hint_x: 0.6
+            pos_hint: {'center_x': 0.5}
+            md_bg_color: 1, 1, 1, 1  # White background for the button
+            text_color: 0, 0, 0, 1   # Black text color
             on_release: root.signup_step_one()
 
         MDIconButton:
             icon: 'arrow-left'
-            pos_hint: {"top": 1, "left": 1}
-            on_release: app.root.current = 'home'
+            pos_hint: {"x": 0, "top": 1}
+            padding: 10
+            on_release: app.root.current = 'login'
+
+
+
 
 <PersonalDetailsScreen>:
     name: 'personal_details'
@@ -97,31 +216,31 @@
             font_style: 'H4'
         MDTextField:
             id: name
-            hint_text: 'Name'
+            hint_text: 'Name *'
             required: True
         MDTextField:
             id: age
-            hint_text: 'Age'
+            hint_text: 'Age *'
             required: True
             input_filter: 'int'
         MDTextField:
             id: height
-            hint_text: 'Height (cm)'
+            hint_text: 'Height (cm) *'
             required: True
             input_filter: 'int'
         MDTextField:
             id: weight
-            hint_text: 'Weight (kg)'
+            hint_text: 'Weight (kg) *'
             required: True
             input_filter: 'int'
         MDTextField:
             id: gender_field
-            hint_text: 'Gender'
+            hint_text: 'Gender *'
             on_focus: if self.focus: root.open_gender_menu()
             readonly: True
         MDTextField:
             id: fitness_goal_field
-            hint_text: 'Fitness Goal'
+            hint_text: 'Fitness Goal *'
             on_focus: if self.focus: root.open_fitness_goal_menu()
             readonly: True
         MDRaisedButton:
@@ -131,138 +250,268 @@
 
         MDIconButton:
             icon: 'arrow-left'
-            pos_hint: {"top": 1, "right": 1}
-            on_release: app.root.current = 'home'
+            pos_hint: {"x": 0, "top": 1}  # Set x to 0 for the left alignment and top to 1 for the top alignment
+            padding: 10  # Adjust padding if you want some spacing from the edges
+            on_release: app.root.current = 'signup'
 
 <HomeScreen>:
     name: 'home'
-    MDBoxLayout:
-        orientation: 'vertical'
-        padding: 50
-        spacing: 10
-        MDLabel:
-            id: welcome_label
-            text: 'Welcome, User!'
-            halign: 'center'
-            font_style: 'H4'
-        MDRaisedButton:
-            text: 'Profile Settings'
-            pos_hint: {"center_x": .5}
-            on_release: app.root.current = 'profile_settings'
-        MDRaisedButton:
-            text: 'Workout Plans'
-            pos_hint: {"center_x": .5}
-            on_release: app.root.current = 'workout_plans'
-        MDRaisedButton:
-            text: 'Motivation'
-            pos_hint: {"center_x": .5}
-            on_release: app.root.current = 'motivation'
-        MDRaisedButton:
-            text: 'Logout'
-            pos_hint: {"center_x": .5}
-            on_release: root.logout()
+    RelativeLayout:
+        # Background image
+        Image:
+            source: 'background_image.jpg'  # Path to the uploaded image
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
 
-        MDIconButton:
-            icon: 'arrow-left'
-            pos_hint: {"top": 1, "right": 1}
-            on_release: app.root.current = 'home'
+        # Dark overlay to enhance text contrast (use a separate Widget for overlay)
+        Widget:
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.4  # Dark transparent overlay
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        # Main content layout
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: [20, 80, 20, 20]
+            spacing: 20
+
+            MDLabel:
+                id: welcome_label
+                text: 'Welcome to OptiFit!'
+                halign: 'center'
+                font_style: 'H4'
+                theme_text_color: "Custom"
+                text_color: [1, 1, 1, 1]  # White text for better contrast
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            # Button layout with better spacing and hover effects
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 15
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDRaisedButton:
+                    text: 'Profile Settings'
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.7
+                    md_bg_color: [0, 0.6, 1, 1]  # Blue color for the button
+                    text_color: [1, 1, 1, 1]
+                    on_release: app.root.current = 'profile_settings'
+                    elevation: 10
+                    shadow_color: [0, 0, 0, 0.2]
+                    on_press: self.md_bg_color = [0, 0.5, 1, 1]  # Darker blue when pressed
+                    on_release: self.md_bg_color = [0, 0.6, 1, 1]  # Original color on release
+
+                MDRaisedButton:
+                    text: 'Workout Plans'
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.7
+                    md_bg_color: [0, 0.6, 1, 1]
+                    text_color: [1, 1, 1, 1]
+                    on_release: app.root.current = 'workout_plans'
+                    elevation: 10
+                    shadow_color: [0, 0, 0, 0.2]
+                    on_press: self.md_bg_color = [0, 0.5, 1, 1]  # Darker blue when pressed
+                    on_release: self.md_bg_color = [0, 0.6, 1, 1]
+
+                MDRaisedButton:
+                    text: 'Diet Plan'
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.7
+                    md_bg_color: [0, 0.6, 1, 1]
+                    text_color: [1, 1, 1, 1]
+                    on_release: app.root.current = 'diet_plan_screen'
+                    elevation: 10
+                    shadow_color: [0, 0, 0, 0.2]
+                    on_press: self.md_bg_color = [0, 0.5, 1, 1]  # Darker blue when pressed
+                    on_release: self.md_bg_color = [0, 0.6, 1, 1]
+
+                MDRaisedButton:
+                    text: 'Motivation'
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.7
+                    md_bg_color: [0, 0.6, 1, 1]
+                    text_color: [1, 1, 1, 1]
+                    on_release: app.root.current = 'motivation'
+                    elevation: 10
+                    shadow_color: [0, 0, 0, 0.2]
+                    on_press: self.md_bg_color = [0, 0.5, 1, 1]  # Darker blue when pressed
+                    on_release: self.md_bg_color = [0, 0.6, 1, 1]
+
+                MDRaisedButton:
+                    text: 'Logout'
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: 0.7
+                    md_bg_color: [1, 0, 0, 1]  # Red color for the logout button
+                    text_color: [1, 1, 1, 1]
+                    on_release: root.logout()
+                    elevation: 10
+                    shadow_color: [0, 0, 0, 0.2]
+                    on_press: self.md_bg_color = [0.8, 0, 0, 1]  # Darker red when pressed
+                    on_release: self.md_bg_color = [1, 0, 0, 1]  # Original red when released
 
 <ProfileSettingsScreen>:
     name: 'profile_settings'
     MDBoxLayout:
         orientation: 'vertical'
-        padding: 50
+        padding: [30, 50, 30, 20]
         spacing: 10
         MDLabel:
             text: 'Profile Settings'
             halign: 'center'
             font_style: 'H4'
+            theme_text_color: "Primary"
+
         MDTextField:
             id: name
             hint_text: 'Name'
             required: True
+            icon_right: "account"
+
         MDTextField:
             id: email
             hint_text: 'Email'
             readonly: True
+            icon_right: "email"
+
         MDTextField:
             id: gender_field
             hint_text: 'Gender'
             readonly: True
+            icon_right: "gender-male-female"
+
         MDTextField:
             id: fitness_goal_field
             hint_text: 'Fitness Goal'
             readonly: True
+            icon_right: "target"
+
         MDRaisedButton:
             text: 'Update Profile'
             pos_hint: {"center_x": .5}
+            size_hint_x: 0.6
+            md_bg_color: app.theme_cls.primary_dark
             on_release: root.submit_settings()
 
         MDIconButton:
             icon: 'arrow-left'
-            pos_hint: {"top": 1, "left": 1}
+            pos_hint: {"x": 0, "top": 1}
             on_release: app.root.current = 'home'
 
 <WorkoutPlansScreen>:
+    name: 'workout_plans'
     BoxLayout:
         orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
 
         MDLabel:
             id: workout_day_title
-            text: "Workout Plan"
+            text: "Get Your Personalized Workout Plan"
             halign: "center"
             font_style: "H5"
-            size_hint_y: None
-            height: "50dp"
 
         ScrollView:
-            MDBoxLayout:
+            MDList:
                 id: workout_list
-                orientation: 'vertical'
-                spacing: "10dp"
-                padding: "10dp"
-                adaptive_height: True
-                size_hint_y: None  # Ensure the content can expand and fit
-                height: self.minimum_height  # Allow dynamic resizing
 
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
-            height: "50dp"
+            height: dp(50)
+            spacing: dp(10)
 
-            MDRaisedButton:
-                text: "Previous Day"
-                on_release: root.previous_day()
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"center_y": 0.5, "x": 0}
+                on_release: app.root.current = 'home'
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
 
-            MDRaisedButton:
-                text: "Next Day"
-                on_release: root.next_day()
+        MDRaisedButton:
+            text: "Open Planner Form"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.open_planner_form()
 
-        MDIconButton:
-            icon: 'arrow-left'
-            pos_hint: {"top": 1, "left": 1}
-            on_release: app.root.current = 'home'
+<DietRecommendationsScreen>:
+    name: 'diet_plan_screen'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+
+        MDLabel:
+            id: diet_day_title
+            text: "Get Your Personalized Diet Plan"
+            halign: "center"
+            font_style: "H5"
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"center_y": 0.5, "x": 0}
+                on_release: app.root.current = 'home'
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+
+        MDRaisedButton:
+            text: "Open Diet Planner"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.open_planner_form()
+
+
 
 <MotivationScreen>:
     name: 'motivation'
-    MDBoxLayout:
+    BoxLayout:
         orientation: 'vertical'
-        padding: 50
-        spacing: 10
-        MDLabel:
-            text: 'Daily Motivation'
-            halign: 'center'
-            font_style: 'H4'
+        padding: [20, 30, 20, 20]
+        spacing: 20
+        md_bg_color: app.theme_cls.bg_light
+
+        BoxLayout:
+            size_hint_y: None
+            height: "48dp"
+            padding: [10, 10]
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"center_y": 0.5}
+                on_release: app.root.current = 'home'
+                theme_text_color: "Custom"
+                text_color: app.theme_cls.primary_color
+
+        BoxLayout:
+            size_hint_y: None
+            height: "300dp"
+            Image:
+                id: motivation_image
+                source: 'motivation.jpg'
+                allow_stretch: True
+                keep_ratio: True
+                radius: [15]
+
         MDLabel:
             id: quote_label
-            text: 'Loading quote...'
-            halign: 'center'
-        MDRaisedButton:
-            text: 'Get Daily Quote'
-            pos_hint: {"center_x": .5}
-            on_release: root.get_daily_quote()
+            text: "Loading your daily motivation..."
+            halign: "center"
+            theme_text_color: "Secondary"
+            font_style: "H5"
 
-        MDIconButton:
-            icon: 'arrow-left'
-            pos_hint: {"top": 1, "left": 1}
-            on_release: app.root.current = 'home'
+        MDRaisedButton:
+            text: "Get New Motivation"
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: 0.6
+            on_release: root.get_daily_quote()

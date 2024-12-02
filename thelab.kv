@@ -1,4 +1,6 @@
 <MDScreenManager>:
+    SplashScreen:
+        name: 'splash'
     LoginScreen:
         name: 'login'
     SignupScreen:
@@ -15,6 +17,19 @@
         name:'diet_plan_screen'
     MotivationScreen:
         name: 'motivation'
+<SplashScreen>:
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1  # Black background
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Image:
+        source: 'Picture2.png'
+        size_hint: 0.5, 0.5  # 50% width and height
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
 <LoginScreen>:
     name: 'login'
     MDBoxLayout:
@@ -197,9 +212,14 @@
 
         MDIconButton:
             icon: 'arrow-left'
-            pos_hint: {"x": 0, "top": 1}
-            padding: 10
-            on_release: app.root.current = 'login'
+            pos_hint: {"center_y": 0.5}
+            size_hint: None, None
+            size: "48dp", "48dp"  # Adjust the size as needed
+            text_color: 1, 1, 1, 1  # White color in RGBA
+            theme_text_color: "Custom"  # Use custom color instead of theme's color
+            on_release:
+                app.root.current = 'login'
+
 
 
 
@@ -278,6 +298,13 @@
             orientation: 'vertical'
             padding: [20, 80, 20, 20]
             spacing: 20
+
+            # Increase logo image size (covers 70% of the width)
+            Image:
+                source: 'picture2.png'  # Path to the logo image
+                size_hint: (0.7, None)  # 70% of the width
+                height: self.width * 0.7  # Adjust height to maintain aspect ratio
+                pos_hint: {'center_x': 0.5}  # Center the logo horizontally
 
             MDLabel:
                 id: welcome_label
@@ -392,84 +419,164 @@
             readonly: True
             icon_right: "target"
 
-        MDRaisedButton:
-            text: 'Update Profile'
-            pos_hint: {"center_x": .5}
-            size_hint_x: 0.6
-            md_bg_color: app.theme_cls.primary_dark
-            on_release: root.submit_settings()
-
         MDIconButton:
             icon: 'arrow-left'
             pos_hint: {"x": 0, "top": 1}
             on_release: app.root.current = 'home'
-
 <WorkoutPlansScreen>:
     name: 'workout_plans'
-    BoxLayout:
+    MDBoxLayout:  # Use MDBoxLayout to enable Material styling
         orientation: 'vertical'
         spacing: dp(10)
         padding: dp(20)
+        canvas.before:
+            Color:
+                rgba: [0,0,0,1]
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
+        # Add an image at the top
+        FitImage:
+            source: 'Picture2.png'
+            size_hint_y: None
+            height: dp(100)  # Adjust the height as needed
+            keep_ratio: True
+            allow_stretch: True
+
+        # Navigation Icon
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"center_y": 0.5}
+            on_release: app.root.current = 'home'  # Navigate to the home screen
+            theme_text_color: "Custom"
+            text_color: [1, 1, 1, 1]  # Set arrow icon to white
+            size_hint: None, None
+            size: dp(48), dp(48)
+
+        # Workout Day Title
         MDLabel:
             id: workout_day_title
-            text: "Get Your Personalized Workout Plan"
+            text: "Your Personalized Workout Plan"
             halign: "center"
             font_style: "H5"
+            size_hint_y: None
+            height: dp(50)
+            theme_text_color: "Custom"
+            text_color: [1, 1, 1, 1]  # White text
 
+        # ScrollView for the workout plan
         ScrollView:
-            MDList:
-                id: workout_list
+            do_scroll_x: False
+            do_scroll_y: True
 
+            BoxLayout:
+                id: workout_list
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                padding: dp(10)
+
+        # Navigation Buttons
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
             height: dp(50)
-            spacing: dp(10)
+            spacing: dp(20)
+            padding: dp(10)
 
-            MDIconButton:
-                icon: 'arrow-left'
-                pos_hint: {"center_y": 0.5, "x": 0}
-                on_release: app.root.current = 'home'
+            MDRectangleFlatButton:
+                text: "Prev Day"
+                pos_hint: {"center_y": 0.5}
+                on_release: root.go_to_prev_day()
                 theme_text_color: "Custom"
-                text_color: app.theme_cls.primary_color
+                text_color: [1, 1, 1, 1]  # White text
 
-        MDRaisedButton:
-            text: "Open Planner Form"
-            pos_hint: {"center_x": 0.5}
-            on_release: root.open_planner_form()
+            MDRectangleFlatButton:
+                text: "Next Day"
+                pos_hint: {"center_y": 0.5}
+                on_release: root.go_to_next_day()
+                theme_text_color: "Custom"
+                text_color: [1, 1, 1, 1]  # White text
 
 <DietRecommendationsScreen>:
-    name: 'diet_plan_screen'
-    BoxLayout:
+    name: 'diet_recommendations'
+    MDBoxLayout:
         orientation: 'vertical'
         spacing: dp(10)
         padding: dp(20)
+        canvas.before:
+            Color:
+                rgba: [0, 0, 0, 1]  # Black background
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
+        # Add an image at the top (adjust the height as needed)
+        FitImage:
+            source: 'Picture2.png'
+            size_hint_y: None
+            height: dp(100)
+            keep_ratio: True
+            allow_stretch: True
+
+        # Navigation Icon
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"center_y": 0.5}
+            on_release: app.root.current = 'home'  # Navigate to home screen
+            theme_text_color: "Custom"
+            text_color: [1, 1, 1, 1]  # White icon color
+            size_hint: None, None
+            size: dp(48), dp(48)
+
+        # Diet Day Title
         MDLabel:
             id: diet_day_title
-            text: "Get Your Personalized Diet Plan"
+            text: "Day 1: Your Diet Plan"
             halign: "center"
             font_style: "H5"
+            size_hint_y: None
+            height: dp(50)
+            theme_text_color: "Custom"
+            text_color: [1, 1, 1, 1]  # White text color
 
+        # ScrollView for the diet plan
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
 
+            BoxLayout:
+                id: diet_list
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+                padding: dp(10)
 
+        # Navigation Buttons
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None
             height: dp(50)
-            spacing: dp(10)
-            MDIconButton:
-                icon: 'arrow-left'
-                pos_hint: {"center_y": 0.5, "x": 0}
-                on_release: app.root.current = 'home'
-                theme_text_color: "Custom"
-                text_color: app.theme_cls.primary_color
+            spacing: dp(20)
+            padding: dp(10)
 
-        MDRaisedButton:
-            text: "Open Diet Planner"
-            pos_hint: {"center_x": 0.5}
-            on_release: root.open_planner_form()
+            MDRectangleFlatButton:
+                text: "Prev Day"
+                pos_hint: {"center_y": 0.5}
+                on_release: root.go_to_prev_day()
+                theme_text_color: "Custom"
+                text_color: [1, 1, 1, 1]  # White text color for the button
+
+            MDRectangleFlatButton:
+                text: "Next Day"
+                pos_hint: {"center_y": 0.5}
+                on_release: root.go_to_next_day()
+                theme_text_color: "Custom"
+                text_color: [1, 1, 1, 1]  # White text color for the button
+
 
 
 
@@ -498,7 +605,7 @@
             height: "300dp"
             Image:
                 id: motivation_image
-                source: 'motivation.jpg'
+                source: ''  # No default image, source will be set dynamically
                 allow_stretch: True
                 keep_ratio: True
                 radius: [15]
@@ -510,8 +617,3 @@
             theme_text_color: "Secondary"
             font_style: "H5"
 
-        MDRaisedButton:
-            text: "Get New Motivation"
-            pos_hint: {"center_x": 0.5}
-            size_hint_x: 0.6
-            on_release: root.get_daily_quote()

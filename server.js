@@ -4,7 +4,7 @@ const Groq = require('groq-sdk');
 // require('dotenv').config(); // Uncomment if using a .env for the API key
 
 // Initialize Groq with API key
-const groq = new Groq({ apiKey: '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' });
+const groq = new Groq({ apiKey: '' });
 
 const app = express();
 

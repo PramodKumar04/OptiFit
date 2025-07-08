@@ -72,7 +72,7 @@ class LoginScreen(Screen):
             MDDialog(title="Login Error", text="Invalid email or password. Please try again.").open()
 
     def google_login(self):
-        url = f"https://accounts.google.com/o/oauth2/v2/auth?client_id={firebaseConfig['apiKey']}&redirect_uri=http://localhost&response_type=token&scope=email%20profile"
+        url = "URL"
         webbrowser.open(url)
 
 

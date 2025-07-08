@@ -39,14 +39,7 @@ from kivy.metrics import dp
 Window.size = (360, 640)
 # Firebase configuration for client-side actions
 firebaseConfig = {
-    "apiKey": "AIzaSyCfVXAq6ebFt8UVkWfJ8wrBrUaqyqSh43E",
-    "authDomain": "optifit-50096.firebaseapp.com",
-    "databaseURL": "https://optifit-50096-default-rtdb.firebaseio.com",
-    "projectId": "optifit-50096",
-    "storageBucket": "optifit-50096.appspot.com",
-    "messagingSenderId": "151853610236",
-    "appId": "1:151853610236:web:a74c7beed18b9cf4a35379",
-    "measurementId": "G-GT45418WNX"
+    
 }
 
 # Initialize Firebase
